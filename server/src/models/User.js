@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: '',
     },
-    email: {
+    friends: {
         type: Array,
         default: [],
     },
@@ -48,7 +48,11 @@ const userSchema = new mongoose.Schema({
         type: Number
     },
 
-}, { timestamps: true });
+}, { 
+    timestamps: true, 
+    collection: 'users', 
+    strict: true //only allow fields specified in schema. strict: 'throw' throws an error on extra undefined fields
+});
 
 const User = mongoose.model('User', userSchema);
 

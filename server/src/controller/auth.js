@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
 export const register = async (req, res) => {
+    //console.log('recieved'+req)
     try {
         const {
             firstName, 
@@ -33,8 +34,35 @@ export const register = async (req, res) => {
         });
 
         const savedUser = await newUser.save()
+        res.status(201).json(savedUser); 
 
     } catch (error) {
+        res.status(500).json({message: 'error creating new user'})
         console.log("error in register function: "+error)
+        
     }
+}
+
+export const login = async (req, res) => {
+    try {
+        const {
+            email,
+            password,
+        } = req.body;
+
+        if (!email) return res.status(400).json({message: 'missing email'});
+        if (!password) return res.status(400).json({message: 'missing password'});
+
+        //generic error message to prevent enumeration. subtle time differences might still allow enumeration
+        const user = await User.findOne({ email: email });
+        if (!user) return res.status(400).json({ message: 'wrong email or password' })
+
+        const passwdMatch = await bcrypt.compare(password, user.password);
+        if (!passwdMatch) return res.status(400).json({ message: 'wrong email or password' })
+        
+    } catch (error) {
+        console.log("error logging in: "+error);
+        res.status(500).json({message: 'login error'})
+    }
+
 }

@@ -5,12 +5,13 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import multer from 'multer';
 import helmet from 'helmet';
-import morgan from 'morgan'
-import bodyParser from 'body-parser'
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 
-import { register } from './controller/auth.js'
-import { connectDB } from './db/db.js'
+import authRoutes from './routes/auth.js';
+import { register } from './controller/auth.js';
+import { connectDB } from './db/db.js';
 
 
 //config
@@ -62,6 +63,10 @@ const upload = multer({
 
 //extracts data under key 'picture' applies validation then parses metadata into req.file and the rest of of the key value pairs into req.body. function register is then called
 app.post('/auth/register', upload.single('picture'), register)
+
+
+//routes
+app.use('/auth', authRoutes)
 
 
  //mongoose

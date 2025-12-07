@@ -5,6 +5,8 @@ export const connectDB = async () => {
     try {
         mongoose.connect(process.env.MONGO_URL)
         console.log('mongodb connected')
+        //mongoose.connection.useDb('maaru')
+        console.log('connected to db')
     } catch (error) {
         console.log(`error while connecting to mongodb: ${error}`)
         process.exit(1) //exit with failure
