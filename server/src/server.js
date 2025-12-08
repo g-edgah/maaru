@@ -11,8 +11,14 @@ import { fileURLToPath } from 'url';
 
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js'
+import postRoutes from './routes/post.js'
+
 import { register } from './controller/auth.js';
+import { createPost } from './controller/post.js'
+
 import { connectDB } from './db/db.js';
+
+import { verifyToken } from './middleware/auth.js'
 
 
 //config
@@ -64,12 +70,13 @@ const upload = multer({
 
 //extracts data under key 'picture' applies validation then parses metadata into req.file and the rest of of the key value pairs into req.body. function register is then called
 app.post('/auth/register', upload.single('picture'), register)
+app.post('/auth/register', verifyToken, upload.single('picture'), createPost)
 
 
 //routes
 app.use('/auth', authRoutes)
 app.use('/users', userRoutes)
-
+app.use('/posts', postRoutes)
 
  //mongoose
 const PORT = process.env.PORT||7058;
