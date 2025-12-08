@@ -10,6 +10,7 @@ import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js'
 import { register } from './controller/auth.js';
 import { connectDB } from './db/db.js';
 
@@ -67,6 +68,7 @@ app.post('/auth/register', upload.single('picture'), register)
 
 //routes
 app.use('/auth', authRoutes)
+app.use('/users', userRoutes)
 
 
  //mongoose

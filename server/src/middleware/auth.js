@@ -24,3 +24,5 @@ export const verifyToken = async (req, res, next) => {
         res.status(500).json({error: error.message})
     }
 }
+
+//this confirms if token exists from poll of tokens stored server side. this makes it vulnerable to attacks where an attacker has a valid token but uses it to access other accounts that arent their's
