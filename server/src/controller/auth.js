@@ -65,8 +65,11 @@ export const login = async (req, res) => {
         if (!passwdMatch) return res.status(400).json({ message: 'wrong email or password' });
 
         const token = jwt.sign({ id : user._id}, process.env.JWT_SECRET);
-        delete user.password;
-        res.status(200).json({ token, user });
+        
+        //to avoid sending back the password
+        const userObject = user.toObject();  // or user.toJSON()
+        delete userObject.password;
+        res.status(200).json({ token, user: userObject });
         
     } catch (error) {
         console.log("error logging in: "+error);
