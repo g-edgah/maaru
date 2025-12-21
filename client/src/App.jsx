@@ -1,25 +1,37 @@
-import { useState } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { useMemo } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
-import HomePage from './pages/homepage/home.jsx'
-import LoginPage from './pages/loginPage/login.jsx'
-import ProfilePage from './pages/profilePage/profile.jsx'
-import NavBar from './pages/navBar/NavBar.jsx' 
 
+import HomePage from './pages/home.jsx';
+import LoginPage from './pages/login.jsx';
+import ProfilePage from './pages/profile.jsx';
+import NavBar from './components/NavBar.jsx';
+import { themeSettings } from './theme.js';
+ 
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const mode  = useSelector((state) => state.mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return (
     <>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/profile/:userId ' element={<ProfilePage />} />
-        <Route path='*' element={<Navigate to='/' />} />
-      </Routes>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/profile/:userId' element={<ProfilePage />} />
+          <Route path='*' element={<Navigate to='/' />} />
+        </Routes>
+      </ThemeProvider>
+      
+
+      
     </>
   )
 }
