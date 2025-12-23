@@ -3,9 +3,9 @@ import  { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     mode: 'light',
     user: {
-        firstName: 'boom',
-        lastName: 'shakalaka',
-        _id: '1234567890',
+        firstName: '',
+        lastName: '',
+        _id: '',
     },
     token: null,
     posts: []
