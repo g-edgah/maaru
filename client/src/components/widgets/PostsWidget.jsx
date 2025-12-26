@@ -7,6 +7,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = useSelector((state) => state.token);
+  const userId = useSelector((state) => state.user._id)
 
   const api_url = import.meta.env.VITE_API_URL;
 
@@ -19,8 +20,21 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     dispatch(setPosts({ posts: data }));
   };
 
+  const getUserPosts = async () => {
+    const response = await fetch(`${api_url}/posts/${userId}`, {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await response.json();
+    dispatch(setPosts({ posts: data }) );
+  };  
+  
   useEffect(() => {
-    getPosts();
+    if (isProfile) {
+      getUserPosts();
+    } else {
+      getPosts();
+    };
   }, []); 
 
   return (
