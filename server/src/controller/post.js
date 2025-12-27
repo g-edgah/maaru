@@ -63,7 +63,7 @@ export const likePost = async(req, res) => {
         const { id } = req.params;
         const { userId } = req.body;
 
-        const post = await post.findById(id);
+        const post = await Post.findById(id);
         const isLiked = post.likes.get(userId);
 
         if (isLiked) {
@@ -71,15 +71,17 @@ export const likePost = async(req, res) => {
         } else if (!isLiked) {
             await post.likes.set(userId, true)   
         }
-
+        //console.log(id)
         const updatedPost = await Post.findByIdAndUpdate(
-            id, { likes: post.likes }, { new: true } //generate new object
+            id, 
+            { likes: post.likes }, 
+            { new: true } //generate new object
         );
 
         res.status(200).json({updatedPost})
         
 
     }catch (error) {
-        res.status(500).json({error: error.message})
+        res.status(500).json({error: error})
     };
 };

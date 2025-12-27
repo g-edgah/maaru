@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import Friend from "../Friend.jsx";
 import FlexBetween from "../styled/flexBetween.jsx";
-import { setPosts } from "../../state/state.js";
+import { setPost } from "../../state/state.js";
 import WidgetWrapper from "../home/WidgetWrapper.jsx";
 
 const PostWidget = ({ postId, postUserId, name, description, location, picturePath, userPicturePath, likes, comments }) => {
@@ -17,8 +17,8 @@ const PostWidget = ({ postId, postUserId, name, description, location, picturePa
     const likeCount = Object.keys(likes).length;
 
     const { palette } = useTheme();
-    const medium = palette.neutral.medium;
-    const main = palette.primary.main;
+    const main = palette.neutral.main;
+    const primary = palette.primary.main;
 
     const api_url = import.meta.env.VITE_API_URL;          
     
@@ -32,7 +32,8 @@ const PostWidget = ({ postId, postUserId, name, description, location, picturePa
             body: JSON.stringify({ userId: loggedInUserId })
         });
         const updatedPost = await response.json();
-        dispatch(setPosts({ posts: updatedPost }));
+        //console.log(updatedPost);
+        dispatch(setPost({ post: updatedPost.updatedPost }));
     };
 
     return (
@@ -43,7 +44,7 @@ const PostWidget = ({ postId, postUserId, name, description, location, picturePa
                 subtitle={location}
                 userPicturePath={userPicturePath}
             />
-            <Typography color={medium} sx={{ mt: "1rem" }}>
+            <Typography color={main} sx={{ mt: "1rem" }}>
                 {description}
             </Typography>
             {picturePath && (

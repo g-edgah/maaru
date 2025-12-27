@@ -17,11 +17,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     });
 
     const data = await response.json();
-    console.log(data);
-    // for (const post of data.post) {
-    //   console.log(post);
-    // }
-    dispatch(setPosts({ posts: data }));
+    //console.log(data.post);
+    dispatch(setPosts({ posts: data.post }));
   };
 
   const getUserPosts = async () => {
@@ -31,7 +28,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     });
     const data = await response.json();
     //console.log(data);
-    dispatch(setPosts({ posts: data }) );
+    dispatch(setPosts({ posts: data.post }) );
   };  
   
   useEffect(() => {
@@ -43,14 +40,14 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   }, []); 
 
  
-  if (!Array.isArray(posts.post)) {
-  console.log("posts is not an array")
-  return <div>Loading posts...</div>; // or null, or a loading spinner
-  } 
+  // if (!Array.isArray(posts.post)) {
+  // console.log("posts is not an array")
+  // return <div>Loading posts...</div>; // or null, or a loading spinner
+  // } 
 
   return (
     <>
-      {posts.post.map(               
+      {posts.map(               
         ({
           _id,
           userId,
