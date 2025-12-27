@@ -1,10 +1,10 @@
-import { ManageAccountsOutlined, EditOutlined, LocationOutlined, WorkOutlineOutlined} from "@mui/icons-material";
+import { ManageAccountsOutlined, EditOutlined, LocationOnOutlined, WorkOutlineOutlined} from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from '@mui/material';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import UserImage from '../home/UserImage';
+import UserImage from '../UserImage';
 import FlexBetween from "../styled/flexBetween";
 import WidgetWrapper from "../home/WidgetWrapper";
 
@@ -45,7 +45,8 @@ const UserWidget =({ userId, picturePath }) => {
     } = user;
 
     return (
-        <WidgetWrapper>
+        <WidgetWrapper >
+
             <FlexBetween
                 gap='0.5rem'
                 pb='1.1rem'
@@ -77,7 +78,7 @@ const UserWidget =({ userId, picturePath }) => {
 
             <Box p='1rem 0'>
                 <Box display='flex' alignItems='center' gap='1rem' mb='0.5rem'>
-                    <LocationOutlined fontSize="large" sx={{ color: main }} />
+                    <LocationOnOutlined fontSize="large" sx={{ color: main }} />
                     <Typography color={medium}>{location}</Typography>
                 </Box>
                 <Box display='flex' alignItems='center' gap='1rem'>
@@ -108,7 +109,7 @@ const UserWidget =({ userId, picturePath }) => {
 
                 <FlexBetween gap='1rem' mb='0.5rem'>
                     <FlexBetween gap='1rem'>
-                        <img src='../assets/x.png' alt='twitter' />
+                        <img width='20px' height='20px' src='../src/assets/x.png' alt='twitter' />
                         <Box>
                             <Typography color={main} fontWeight='500'>X.com</Typography>
                             <Typography color={medium}>Social Network</Typography>
@@ -119,7 +120,7 @@ const UserWidget =({ userId, picturePath }) => {
 
                 <FlexBetween gap='1rem'>
                     <FlexBetween gap='1rem'>
-                        <img src='../assets/linkedin-icon.png' alt='linkedin' />
+                        <img width='20px' height='20px' src='/src/assets/linkedin-icon-1.svg' alt='linkedin' />
                         <Box>
                             <Typography color={main} fontWeight='500'>LinkedIn</Typography>
                             <Typography color={medium}>Network Platform</Typography>

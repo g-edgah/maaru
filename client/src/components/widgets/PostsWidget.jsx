@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "../../state/index";
+import { setPosts } from "../../state/state.js";
 import PostWidget from "./PostWidget";
 
 const PostsWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = useSelector((state) => state.token);
-  const userId = useSelector((state) => state.user._id)
 
   const api_url = import.meta.env.VITE_API_URL;
 
@@ -16,7 +15,12 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
+
     const data = await response.json();
+    console.log(data);
+    // for (const post of data.post) {
+    //   console.log(post);
+    // }
     dispatch(setPosts({ posts: data }));
   };
 
@@ -26,6 +30,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
+    //console.log(data);
     dispatch(setPosts({ posts: data }) );
   };  
   
@@ -37,13 +42,20 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     };
   }, []); 
 
+ 
+  if (!Array.isArray(posts.post)) {
+  console.log("posts is not an array")
+  return <div>Loading posts...</div>; // or null, or a loading spinner
+  } 
+
   return (
     <>
-      {posts.map(               
+      {posts.post.map(               
         ({
           _id,
           userId,
           firstName,
+          lastName,
           description,
           location,
           picturePath,

@@ -1,12 +1,12 @@
 import { ChatBubbleOutlineOutlined,  FavoriteBorderOutlined, FavoriteOutlined, ShareOutlined } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material"; 
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Friend from "../Friend.jsx";
 import FlexBetween from "../styled/flexBetween.jsx";
 import { setPosts } from "../../state/state.js";
-import PostWidget from "./PostWidget.jsx";
+import WidgetWrapper from "../home/WidgetWrapper.jsx";
 
 const PostWidget = ({ postId, postUserId, name, description, location, picturePath, userPicturePath, likes, comments }) => {
     const dispatch = useDispatch();
@@ -99,4 +99,4 @@ const PostWidget = ({ postId, postUserId, name, description, location, picturePa
     );  
 }
  
-export default PostsWidget;
+export default PostWidget;

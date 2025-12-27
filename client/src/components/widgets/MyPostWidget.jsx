@@ -1,4 +1,4 @@
-import { EditOutlined, DeleteOutlined, AttachedFileOutlined, GifBoxOutlined,ImageOutlined, MicOutlined, MoreHorizOutlined } from '@mui/icons-material';
+import { EditOutlined, DeleteOutlined, AttachFileOutlined, GifBoxOutlined,ImageOutlined, MicOutlined, MoreHorizOutlined } from '@mui/icons-material';
 import { Box, Divider, Button, IconButton, InputBase, Typography, useTheme, useMediaQuery } from '@mui/material';
 import Dropzone from 'react-dropzone';
 import { useState } from 'react';
@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import FlexBetween from '../styled/flexBetween';
 import { setPosts } from '../../state/state.js';
-import UserImage from '../home/UserImage';
+import UserImage from '../UserImage';
 import WidgetWrapper from '../home/WidgetWrapper';
 
 
@@ -16,7 +16,7 @@ const MyPostWidget = ({ picturePath }) => {
     const [image, setImage] = useState(null);
     const [post, setPost] = useState('');
     const token = useSelector((state) => state.token);
-    const { _Id } = useSelector((state) => state.user);
+    const { _id } = useSelector((state) => state.user);
     const { palette } = useTheme();
     const dark = palette.neutral.dark;
     const medium = palette.neutral.medium;
@@ -35,13 +35,14 @@ const MyPostWidget = ({ picturePath }) => {
             formData.append('picture', image);
             formData.append('picturePath', image.name)
         }
-
+        console.log(formData)
         const response = await fetch(`${api_url}/posts`, {
             method: 'POST',
             headers: {Authorization: `Bearer ${token}`},
             body: formData,
         });
-        const posts = await response.json();
+        const posts = await response//.json();
+        console.log(response)
         dispatch(setPosts({ posts }))
         setImage(null);
         setPost('')
@@ -134,7 +135,7 @@ const MyPostWidget = ({ picturePath }) => {
                         </FlexBetween>
 
                         <FlexBetween gap='0.25rem'>
-                            <AttachedFileOutlined sx={{ color: mediumMain }} />
+                            <AttachFileOutlined sx={{ color: mediumMain }} />
                             <Typography color={mediumMain}>Attachment</Typography>
                         </FlexBetween>
 
