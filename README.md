@@ -1,6 +1,6 @@
 # Socio - Social Media Application
 
-![Social Media App](https://img.shields.io/badge/Social-Media-blue) ![React](https://img.shields.io/badge/React-18.2-blue) ![Node.js](https://img.shields.io/badge/Node.js-18-green) ![Express](https://img.shields.io/badge/Express-4.18-lightgrey)
+![React](https://img.shields.io/badge/React-18.2-blue) ![Node.js](https://img.shields.io/badge/Node.js-18-green) ![Express](https://img.shields.io/badge/Express-4.18-lightgrey)
 
 ## 📖 Overview
 
@@ -30,10 +30,10 @@ Socio is a fully functional social media application that allows users to regist
 
 ### 🎨 **User Experience**
 - **Dark/Light Mode**: Toggle between themes for comfortable viewing
-- **Responsive Navigation**: Intuitive navigation bar with essential functions
+- **Responsive Layout**: Intuitive navigation bar with essential functions
 - **Real-time Updates**: Dynamic content loading and state management
 
-## 🏗️ **Technology Stack**
+## 🏗️ **Tech Stack**
 
 ### **Frontend**
 - **React 18** - UI library for building interactive interfaces
@@ -63,6 +63,7 @@ socio-social-app/
 │   │   └── assets/       # Images, styles, and static files
 │   ├── public/           # Static files
 │   └── package.json      # Frontend dependencies
+│   └── .env              # Frontend secrets
 │
 ├── server/               # Backend Node.js application
 │   ├── controllers/      # Business logic for routes
@@ -71,6 +72,7 @@ socio-social-app/
 │   ├── middleware/      # Authentication and file handling
 │   ├── utils/           # Helper functions
 │   └── package.json     # Backend dependencies
+│   └── .env             # Backend secrets
 │
 └── README.md            # Project documentation
 ```
@@ -78,79 +80,75 @@ socio-social-app/
 ## 🚀 **Getting Started**
 
 ### **Prerequisites**
-- Node.js (v18 or higher)
+- Node.js 
 - npm or yarn package manager
 - MongoDB instance (local or cloud)
 
 ### **Installation**
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/socio-social-app.git
-   cd socio-social-app
+   ```
+   git clone https://github.com/g-edgah/social_media_app.git
+   cd social_media_app
    ```
 
 2. **Backend Setup**
-   ```bash
+   ```
    cd server
    npm install
    ```
    Create a `.env` file in the server directory:
-   ```env
-   PORT=5001
-   MONGO_URI=your_mongodb_connection_string
+   server:
+   ```
+   PORT=3000
+   MONGO_URI=your_mongodb_connection_string 
    JWT_SECRET=your_jwt_secret_key
    NODE_ENV=development
    ```
 
 3. **Frontend Setup**
-   ```bash
+   ```
    cd ../client
    npm install
    ```
    Create a `.env` file in the client directory:
-   ```env
+   ```
    VITE_API_URL=http://localhost:5001
    ```
 
 ### **Running the Application**
 
 1. **Start the backend server**
-   ```bash
+   ```
    cd server
    npm run dev
    ```
-   Server will run on `http://localhost:5001`
+   Server will run on `http://localhost:3000`
 
 2. **Start the frontend development server**
-   ```bash
+   ```
    cd client
    npm run dev
    ```
    Client will run on `http://localhost:5173`
 
-3. **Open your browser and navigate to `http://localhost:5173`**
+3. **Open your browser and visit to `http://localhost:5173`**
 
 ## 🔧 **API Endpoints**
 
 ### **Authentication**
 - `POST /auth/register` - Register a new user
 - `POST /auth/login` - Login existing user
-- `POST /auth/logout` - Logout user
+- #logout is handled by reseting state
 
 ### **Users**
-- `GET /users` - Get all users
 - `GET /users/:id` - Get specific user
-- `PATCH /users/:id` - Update user information
 - `GET /users/:id/friends` - Get user's friends
 - `PATCH /users/:id/:friendId` - Add/remove friend
 
 ### **Posts**
 - `GET /posts` - Get all posts
-- `GET /posts/:id` - Get specific post
 - `POST /posts` - Create new post
-- `PATCH /posts/:id` - Update post
-- `DELETE /posts/:id` - Delete post
 - `PATCH /posts/:id/like` - Like/unlike post
 
 ## 🎯 **Key Components**
@@ -171,9 +169,8 @@ socio-social-app/
 ## 🛡️ **Security Features**
 - **JWT Authentication**: Secure API endpoints with token-based auth
 - **Password Hashing**: Bcrypt implementation for password security
-- **Protected Routes**: Client and server-side route protection
+- **Protected Routes**: Client and server-side route protection using middleware
 - **Input Validation**: Sanitization and validation of user inputs
-- **CORS Configuration**: Cross-origin resource sharing setup
 
 ## 📱 **State Management**
 
@@ -199,7 +196,6 @@ socio-social-app/
 
 ## 🔄 **Development Features**
 - **Hot Reloading**: Instant feedback during development
-- **ESLint Configuration**: Code quality and consistency
 - **Environment Variables**: Secure configuration management
 - **Error Handling**: Comprehensive error handling on both client and server
 
@@ -212,44 +208,10 @@ socio-social-app/
 
 ## 📈 **Future Enhancements**
 - [ ] Real-time messaging and notifications
-- [ ] Image upload and cloud storage integration
-- [ ] Advanced search functionality
-- [ ] Hashtag and trending topics
-- [ ] Mobile application (React Native)
-- [ ] Analytics dashboard for user insights
-- [ ] Social sharing integrations
 - [ ] Email notifications and newsletters
 - [ ] Video upload and playback
 - [ ] Stories feature (24-hour content)
 - [ ] Groups and communities
-
-## 🤝 **Contributing**
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 **Acknowledgments**
-
-- React and Redux communities for excellent documentation
-- Vite team for the amazing build tool
-- All open-source libraries used in this project
-- MongoDB for the database solution
-- Express.js team for the robust backend framework
-
-## 📧 **Contact**
-
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
-
-Project Link: [https://github.com/yourusername/socio-social-app](https://github.com/yourusername/socio-social-app)
 
 ---
 
