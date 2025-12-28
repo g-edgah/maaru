@@ -24,7 +24,9 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const api_url = import.meta.env.VITE_API_URL;
 
-  const isFriend = friends.find((friend) => friend._id === friendId);
+  
+  const isFriend = friends.find((friend) => (friend._id || friend) === friendId);
+  //console.log(`isFriend: ${isFriend}`);
 
   const patchFriend = async () => {         
     const response = await fetch(`${api_url}/users/${_id}/${friendId}`, {
@@ -35,6 +37,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
       },
     });
     const data = await response.json();
+    console.log(data);
     dispatch(setFriends({ friends: data }));
   };
 

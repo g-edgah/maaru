@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 import UserWidget from "../components/widgets/UserWidget";
 import MyPostWidget from "../components/widgets/MyPostWidget";
 import PostsWidget from "../components/widgets/PostsWidget";
+import AdvertWidget from "../components/widgets/AdvertWidget";
 
 
 const HomePage = () => {
